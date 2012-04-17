@@ -1,0 +1,13 @@
+#{extends 'main.html'/}
+#{set title:'Home'/}
+
+<!-- task: Task -->
+<h1>${task.label}</h1>
+
+<p>${task.description}</p>
+
+#{form @Tasks.deleteTask(task.id)}
+    <input type="submit" value="Delete"/>
+#{/form}
+
+<a href="/tasks">Back to task list</a>

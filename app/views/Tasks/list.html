@@ -1,0 +1,29 @@
+#{extends 'main.html'/}
+#{set title:'Home'/}
+
+<h1>TODO list</h1>
+<p>There is ${tasks.size()} task(s)</p>
+
+<ul>
+    #{list items:tasks, as:'task'}
+        <li>${task.label} <a href="@{Tasks.detail(task.id)}">Detail</a></li>
+    #{/list}
+</ul>
+
+#{ifErrors}
+    <h3>Oops…</h3>
+#{/ifErrors}
+
+<div>
+    #{form @Tasks.newTask()}
+        <label for="label">Label : </label>
+        <input type="text" name="task.label" id="label" value="${flash['task.label']}"/><br/>
+        <span class="error">#{error 'task.label' /}</span><br/>
+
+        <label for="description">Description : </label>
+        <textarea name="task.description" id="description">${flash['task.description']}</textarea><br/>
+        <span class="error">#{error 'task.description' /}</span><br/>
+
+        <input type="submit" value="Create"/>
+    #{/form}
+</div>
